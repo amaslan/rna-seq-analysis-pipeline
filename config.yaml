@@ -1,0 +1,39 @@
+# set all paths needed for Snakefile to run RNA-seq pipeline
+
+# path to an uncompressed FASTA file with all transcript sequences. 
+# if download as .gz, run 'gunzip file_name.gz'
+# MAKE SURE THIS TRANSCRIPT VERSION MATCHES THE ONE SPECIFIED IN DIFFERENTIAL EXPRESSION ANALYSIS!
+CDNA: '/clusterfs/rosalind/groups/streetslab/amaslan/ivana/annotations/Homo_sapiens.GRCh38.cdna.all.fa'
+
+#path to fastq.gz files
+DATA_DIR: '/clusterfs/rosalind/groups/streetslab/amaslan/ivana/data/gi_IV-3549'
+
+# path to desired results folder
+OUT_DIR: '/clusterfs/rosalind/groups/streetslab/amaslan/ivana/results'
+
+# path to trimmomatic installation
+TRIM: '/clusterfs/vector/home/groups/software/sl-7.x86_64/modules/trimmomatic/0.36'
+
+# path to picard installation
+PICARD: '/clusterfs/vector/home/groups/software/sl-7.x86_64/modules/picard/2.9.0/lib'
+
+# conditions for each sample in sample order [amm1, amm10, etc.] (for differential expression analysis)
+# confirm that this is the 1-18 sample order!!
+CONDS: ['ZWT_P_DO',
+'ZWT_P_DO',
+'ZWT_P_DO',
+'ZWT_B_DO',
+'ZWT_B_DO',
+'ZWT_B_DO',
+'ZKD_P_D5',
+'ZKD_P_D5',
+'ZKD_P_D5',
+'ZKD_B_D5',
+'ZKD_B_D5',
+'ZKD_B_D5',
+'ZKD_P_D14',
+'ZKD_P_D14',
+'ZKD_P_D14',
+'ZKD_B_D14',
+'ZKD_B_D14',
+'ZKD_B_D14']
