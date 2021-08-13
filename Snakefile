@@ -63,7 +63,7 @@ def sample_dictionary(fastq):
 		global dictionary
 		global list_of_R1_and_R2
 		for sample_files in files:
-			if bool(re.match(re.escape('*_R*_*.fastq.gz'), sample_files)): # add because directory contains I1 and I1 files in addition to R1, R2
+			if bool(re.search('_R._001.fastq.gz', sample_files)): # add because directory contains I1 and I1 files in addition to R1, R2
 				sample_complete = sample_files.split('_001.fastq.gz')
 				sample_info = sample_files.split('_')
 				sample_name = sample_info[0]
