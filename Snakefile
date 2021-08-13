@@ -122,17 +122,17 @@ rule all:
 		[OUT_DIR + "/" + x for x in expand('{sample}/quant.sf', sample = SAMPLES)],
 		[OUT_DIR + "/" + x for x in expand('{sample}/lib_format_counts.json', sample = SAMPLES)],
 		OUT_DIR + '/quant.tsv.gz',
-		[OUT_DIR + "/" + x for x in expand('{sample}/map.sam', sample = SAMPLES)],
-		[OUT_DIR + "/" + x for x in expand('{sample}/map.bam', sample = SAMPLES)],
-		[OUT_DIR + "/" + x for x in expand('{sample}/mapped.bam', sample = SAMPLES)],
-		[OUT_DIR + "/" + x for x in expand('{sample}/mapped.sorted.bam', sample = SAMPLES)],
-		[OUT_DIR + "/" + x for x in expand('{sample}/mapped.sorted.cleaned.bam', sample = SAMPLES)],
-		[OUT_DIR + "/" + x for x in expand('{sample}/multiple_metrics.alignment_summary_metrics', sample = SAMPLES)],
-		[OUT_DIR + "/" + x for x in expand('{sample}/multiple_metrics.gc_bias.detail_metrics', sample = SAMPLES)],
-		[OUT_DIR + "/" + x for x in expand('{sample}/multiple_metrics.gc_bias.pdf', sample = SAMPLES)],
-		[OUT_DIR + "/" + x for x in expand('{sample}/multiple_metrics.gc_bias.summary_metrics', sample = SAMPLES)],
-		[OUT_DIR + "/" + x for x in expand('{sample}/multiple_metrics.insert_size_histogram.pdf', sample = SAMPLES)],
-		[OUT_DIR + "/" + x for x in expand('{sample}/multiple_metrics.insert_size_metrics', sample = SAMPLES)],
+		#[OUT_DIR + "/" + x for x in expand('{sample}/map.sam', sample = SAMPLES)],
+		#[OUT_DIR + "/" + x for x in expand('{sample}/map.bam', sample = SAMPLES)],
+		#[OUT_DIR + "/" + x for x in expand('{sample}/mapped.bam', sample = SAMPLES)],
+		#[OUT_DIR + "/" + x for x in expand('{sample}/mapped.sorted.bam', sample = SAMPLES)],
+		#[OUT_DIR + "/" + x for x in expand('{sample}/mapped.sorted.cleaned.bam', sample = SAMPLES)],
+		#[OUT_DIR + "/" + x for x in expand('{sample}/multiple_metrics.alignment_summary_metrics', sample = SAMPLES)],
+		#[OUT_DIR + "/" + x for x in expand('{sample}/multiple_metrics.gc_bias.detail_metrics', sample = SAMPLES)],
+		#[OUT_DIR + "/" + x for x in expand('{sample}/multiple_metrics.gc_bias.pdf', sample = SAMPLES)],
+		#[OUT_DIR + "/" + x for x in expand('{sample}/multiple_metrics.gc_bias.summary_metrics', sample = SAMPLES)],
+		#[OUT_DIR + "/" + x for x in expand('{sample}/multiple_metrics.insert_size_histogram.pdf', sample = SAMPLES)],
+		#[OUT_DIR + "/" + x for x in expand('{sample}/multiple_metrics.insert_size_metrics', sample = SAMPLES)],
 		OUT_DIR + '/counts_by_gene.csv',
 		OUT_DIR + '/dispersion.png',
 		OUT_DIR + '/de_summary.csv',
@@ -218,14 +218,15 @@ rule salmon_quant:
 		index = rules.salmon_index.output.index
 	output:
 		join(OUT_DIR, '{sample}', 'quant.sf'),
-		join(OUT_DIR, '{sample}', 'lib_format_counts.json'),
-		join(OUT_DIR, '{sample}', 'map.sam')
+		join(OUT_DIR, '{sample}', 'lib_format_counts.json')#,
+		#join(OUT_DIR, '{sample}', 'map.sam')
 	log:
 		'logs/{sample}_salmons_quant.log'
 	threads: 4
+	# 	salmon quant -p {threads} --writeMappings={OUT_DIR}/{wildcards.sample}/map.sam -i {input.index} -l A -1 <(gunzip -c {OUT_DIR}/trimmedFQ/{wildcards.sample}_filtered_1P.fastq.gz) -2 <(gunzip -c {OUT_DIR}/trimmedFQ/{wildcards.sample}_filtered_2P.fastq.gz) -o {OUT_DIR}/{wildcards.sample} &> {log}
 	shell:
 		"""
-		salmon quant -p {threads} --writeMappings={OUT_DIR}/{wildcards.sample}/map.sam -i {input.index} -l A -1 <(gunzip -c {OUT_DIR}/trimmedFQ/{wildcards.sample}_filtered_1P.fastq.gz) -2 <(gunzip -c {OUT_DIR}/trimmedFQ/{wildcards.sample}_filtered_2P.fastq.gz) -o {OUT_DIR}/{wildcards.sample} &> {log}
+		salmon quant -p {threads} --validateMappings -i {input.index} -l A -1 <(gunzip -c {OUT_DIR}/trimmedFQ/{wildcards.sample}_filtered_1P.fastq.gz) -2 <(gunzip -c {OUT_DIR}/trimmedFQ/{wildcards.sample}_filtered_2P.fastq.gz) -o {OUT_DIR}/{wildcards.sample} &> {log}
 		"""
 
 rule collate_salmon:
@@ -253,71 +254,71 @@ rule collate_salmon:
                 for line in lines:
                     out.write(b(sample + '\t' + line))
 
-# map.sam --> map.bam
-rule sam_to_bam:
-	input:
-		expand(join(OUT_DIR, '{sample}', 'map.sam'), sample= SAMPLES)
-	output:
-		join(OUT_DIR, '{sample}', 'map.bam')
-	shell:
-		"""
-		samtools view -S -b {OUT_DIR}/{wildcards.sample}/map.sam > {OUT_DIR}/{wildcards.sample}/map.bam
-		"""
+# # map.sam --> map.bam
+# rule sam_to_bam:
+# 	input:
+# 		expand(join(OUT_DIR, '{sample}', 'map.sam'), sample= SAMPLES)
+# 	output:
+# 		join(OUT_DIR, '{sample}', 'map.bam')
+# 	shell:
+# 		"""
+# 		samtools view -S -b {OUT_DIR}/{wildcards.sample}/map.sam > {OUT_DIR}/{wildcards.sample}/map.bam
+# 		"""
 
-# map.bam --> mapped.bam
-rule remove_unmapped:
-	input:
-		expand(join(OUT_DIR, '{sample}', 'map.bam'), sample= SAMPLES)
-	output:
-		join(OUT_DIR, '{sample}', 'mapped.bam')
-	shell:
-		"""
-		samtools view -F 0x04 -b {OUT_DIR}/{wildcards.sample}/map.bam > {OUT_DIR}/{wildcards.sample}/mapped.bam
-		"""
+# # map.bam --> mapped.bam
+# rule remove_unmapped:
+# 	input:
+# 		expand(join(OUT_DIR, '{sample}', 'map.bam'), sample= SAMPLES)
+# 	output:
+# 		join(OUT_DIR, '{sample}', 'mapped.bam')
+# 	shell:
+# 		"""
+# 		samtools view -F 0x04 -b {OUT_DIR}/{wildcards.sample}/map.bam > {OUT_DIR}/{wildcards.sample}/mapped.bam
+# 		"""
 
-# mapped.bam --> mapped.sorted.bam
-rule sort_mapped_bam:
-	input:
-		expand(join(OUT_DIR, '{sample}', 'mapped.bam'), sample= SAMPLES)
-	output:
-		join(OUT_DIR, '{sample}', 'mapped.sorted.bam')
-	shell:
-		"""
-		samtools sort {OUT_DIR}/{wildcards.sample}/mapped.bam -o {OUT_DIR}/{wildcards.sample}/mapped.sorted.bam
-		"""
+# # mapped.bam --> mapped.sorted.bam
+# rule sort_mapped_bam:
+# 	input:
+# 		expand(join(OUT_DIR, '{sample}', 'mapped.bam'), sample= SAMPLES)
+# 	output:
+# 		join(OUT_DIR, '{sample}', 'mapped.sorted.bam')
+# 	shell:
+# 		"""
+# 		samtools sort {OUT_DIR}/{wildcards.sample}/mapped.bam -o {OUT_DIR}/{wildcards.sample}/mapped.sorted.bam
+# 		"""
 
-# mapped.sorted.bam --> mapped.sorted.cleaned.bam
-rule clean_sorted_mapped_bam:
-	input:
-		expand(join(OUT_DIR, '{sample}', 'mapped.sorted.bam'), sample= SAMPLES)
-	output:
-		join(OUT_DIR, '{sample}', 'mapped.sorted.cleaned.bam')
-	shell:
-		"""
-		java -Xmx2g -jar {PICARD}/picard.jar CleanSam I={OUT_DIR}/{wildcards.sample}/mapped.sorted.bam O={OUT_DIR}/{wildcards.sample}/mapped.sorted.cleaned.bam
-		"""
+# # mapped.sorted.bam --> mapped.sorted.cleaned.bam
+# rule clean_sorted_mapped_bam:
+# 	input:
+# 		expand(join(OUT_DIR, '{sample}', 'mapped.sorted.bam'), sample= SAMPLES)
+# 	output:
+# 		join(OUT_DIR, '{sample}', 'mapped.sorted.cleaned.bam')
+# 	shell:
+# 		"""
+# 		java -Xmx2g -jar {PICARD}/picard.jar CleanSam I={OUT_DIR}/{wildcards.sample}/mapped.sorted.bam O={OUT_DIR}/{wildcards.sample}/mapped.sorted.cleaned.bam
+# 		"""
 
-# run CollectInsertSizeMetrics, CollectGcBiasMetrics, CollectAlignmentSummaryMetrics
-rule collect_isize_gc_alignment_metrics:
-	input:
-		expand(join(OUT_DIR, '{sample}', 'mapped.sorted.cleaned.bam'), sample= SAMPLES)
-	output:
-		join(OUT_DIR, '{sample}', 'multiple_metrics.alignment_summary_metrics'),
-		join(OUT_DIR, '{sample}', 'multiple_metrics.gc_bias.detail_metrics'),
-		join(OUT_DIR, '{sample}', 'multiple_metrics.gc_bias.pdf'),
-		join(OUT_DIR, '{sample}', 'multiple_metrics.gc_bias.summary_metrics'),
-		join(OUT_DIR, '{sample}', 'multiple_metrics.insert_size_histogram.pdf'),
-		join(OUT_DIR, '{sample}', 'multiple_metrics.insert_size_metrics')
-	shell:
-		"""
-		java -Xmx2g -jar {PICARD}/picard.jar CollectMultipleMetrics PROGRAM=null PROGRAM=CollectInsertSizeMetrics PROGRAM=CollectGcBiasMetrics PROGRAM=CollectAlignmentSummaryMetrics I={OUT_DIR}/{wildcards.sample}/mapped.sorted.cleaned.bam O={OUT_DIR}/{wildcards.sample}/multiple_metrics R={CDNA}
-		"""
+# # run CollectInsertSizeMetrics, CollectGcBiasMetrics, CollectAlignmentSummaryMetrics
+# rule collect_isize_gc_alignment_metrics:
+# 	input:
+# 		expand(join(OUT_DIR, '{sample}', 'mapped.sorted.cleaned.bam'), sample= SAMPLES)
+# 	output:
+# 		join(OUT_DIR, '{sample}', 'multiple_metrics.alignment_summary_metrics'),
+# 		join(OUT_DIR, '{sample}', 'multiple_metrics.gc_bias.detail_metrics'),
+# 		join(OUT_DIR, '{sample}', 'multiple_metrics.gc_bias.pdf'),
+# 		join(OUT_DIR, '{sample}', 'multiple_metrics.gc_bias.summary_metrics'),
+# 		join(OUT_DIR, '{sample}', 'multiple_metrics.insert_size_histogram.pdf'),
+# 		join(OUT_DIR, '{sample}', 'multiple_metrics.insert_size_metrics')
+# 	shell:
+# 		"""
+# 		java -Xmx2g -jar {PICARD}/picard.jar CollectMultipleMetrics PROGRAM=null PROGRAM=CollectInsertSizeMetrics PROGRAM=CollectGcBiasMetrics PROGRAM=CollectAlignmentSummaryMetrics I={OUT_DIR}/{wildcards.sample}/mapped.sorted.cleaned.bam O={OUT_DIR}/{wildcards.sample}/multiple_metrics R={CDNA}
+# 		"""
 
 # run MultiQC
 rule multi_qc_metrics:
     input:
-        fastqc_files = expand(join(OUT_DIR, 'fastQC_output', '{sample_full}_fastqc.html'), sample_full = SAMPLES_FULL),
-        picard_files = expand(join(OUT_DIR, 'picard', '{sample}/multiple_metrics.insert_size_metrics'), sample= SAMPLES)
+        fastqc_files = expand(join(OUT_DIR, 'fastQC_output', '{sample_full}_fastqc.html'), sample_full = SAMPLES_FULL)#,
+        # picard_files = expand(join(OUT_DIR, 'picard', '{sample}/multiple_metrics.insert_size_metrics'), sample= SAMPLES)
     output:
         '{OUT_DIR}/quality_control_metrics/multiqc/multiqc_report.html'
     shell:
