@@ -81,15 +81,17 @@ def sample_dictionary(fastq):
 FILES, SAMPLES_FULL_PATH = sample_dictionary(DATA_DIR)
 SAMPLES = sorted(FILES.keys())
 
-SAMPLES_FULL = []
-SAMPLES_FULL_PATH = []
-for s in SAMPLES:
-	R1 = FILES[s]['R1'][0]
-	R2 = FILES[s]['R2'][0]
-	SAMPLES_FULL_PATH.append(R1)
-	SAMPLES_FULL_PATH.append(R2)
-	SAMPLES_FULL.append(basename(R1).rstrip('.fastq.gz'))
-	SAMPLES_FULL.append(basename(R2).rstrip('.fastq.gz'))
+sample_names = []
+
+def R1_R2_sample_names(list_r1_r2):
+    global sample_names
+    for i in range(0, len(list_r1_r2)):
+        name_full = list_r1_r2[i].split('/')[-1]
+        name = name_full.rstrip('.fastq.gz')
+        sample_names.append(name)
+    return sorted(sample_names)
+
+SAMPLES_FULL = R1_R2_sample_names(SAMPLES_FULL_PATH)
 
 # make sampleKey.csv needed for differential expression analysis
 print(SAMPLES)
