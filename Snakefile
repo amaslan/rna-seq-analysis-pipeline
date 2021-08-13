@@ -46,7 +46,7 @@ CONDS = config['CONDS']
 TRIM = config['TRIM']
 
 # path to picard installation
-PICARD = config['PICARD']
+#PICARD = config['PICARD']
 
 
 # FUNCTION: sample_dictionary
