@@ -92,6 +92,8 @@ for s in SAMPLES:
 	SAMPLES_FULL.append(basename(R2).rstrip('.fastq.gz'))
 
 # make sampleKey.csv needed for differential expression analysis
+print(SAMPLES)
+print(CONDS)
 sampleKey = pd.DataFrame(
 	{
 		'sample': SAMPLES,
