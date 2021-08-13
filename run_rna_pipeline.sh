@@ -15,7 +15,7 @@
 #SBATCH --time=2-00:00:00
 #
 # Nodes:
-#SBATCH --nodes=2
+#SBATCH --nodes=1
 ## Command(s) to run:
 module load fastqc/0.11.9
 module load samtools/1.8
