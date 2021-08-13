@@ -59,24 +59,24 @@ dictionary = {}
 list_of_R1_and_R2 = []
 
 def sample_dictionary(fastq):
-    for root, dirs, files in os.walk(fastq):
-        global dictionary
-        global list_of_R1_and_R2
-        for sample_files in files:
-        	if bool(re.match(r'*_R*_*.fastq.gz', sample_files)): # add because directory contains I1 and I1 files in addition to R1, R2
-            	sample_complete = sample_files.split('_001.fastq.gz')
-            	sample_info = sample_files.split('_')
-            	sample_name = sample_info[0]
-            	if sample_name in dictionary: 
-                	full_path = root + '/' + sample_files
-                	dictionary[sample_name][sample_info[2]] = [full_path]
-                	list_of_R1_and_R2.append(full_path)
-            	else: 
-                	dictionary[sample_name] = {}
-                	full_path = root + '/' + sample_files
-                	dictionary[sample_name][sample_info[2]] = [full_path]
-                	list_of_R1_and_R2.append(full_path) 
-    	return dictionary, list_of_R1_and_R2
+	for root, dirs, files in os.walk(fastq):
+		global dictionary
+		global list_of_R1_and_R2
+		for sample_files in files:
+			if bool(re.match(r'*_R*_*.fastq.gz', sample_files)): # add because directory contains I1 and I1 files in addition to R1, R2
+				sample_complete = sample_files.split('_001.fastq.gz')
+				sample_info = sample_files.split('_')
+				sample_name = sample_info[0]
+				if sample_name in dictionary: 
+					full_path = root + '/' + sample_files
+					dictionary[sample_name][sample_info[2]] = [full_path]
+					list_of_R1_and_R2.append(full_path)
+				else: 
+					dictionary[sample_name] = {}
+					full_path = root + '/' + sample_files
+					dictionary[sample_name][sample_info[2]] = [full_path]
+					list_of_R1_and_R2.append(full_path) 
+		return dictionary, list_of_R1_and_R2
 
 FILES, SAMPLES_FULL_PATH = sample_dictionary(DATA_DIR)
 SAMPLES = sorted(FILES.keys())
