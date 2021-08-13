@@ -51,7 +51,7 @@ $ conda config --add channels bioconda
 
 ### 4. Run with the number of available CPU cores in the machine:
 ```
-module load ...
+module load ... # whatever modules you need to load to run the pipeline
 screen -S <job_name> snakemake -j
 ```
 ## Key output

@@ -17,7 +17,7 @@
 # Nodes:
 #SBATCH --nodes=1
 ## Command(s) to run:
-module load fastqc
+module load fastqc/0.11.9
 module load samtools/1.8
-module load multiqc
+module load multiqc/1.9
 snakemake -j --rerun-incomplete

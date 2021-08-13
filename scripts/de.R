@@ -7,7 +7,6 @@
 # https://www.bioconductor.org/packages/3.7/bioc/vignettes/limma/inst/doc/usersguide.pdf
 
 library(ensembldb)
-#library(EnsDb.Hsapiens.v86)
 library(tximport)
 library(edgeR)
 library(limma)
@@ -36,7 +35,7 @@ names(files) <- samples
 gtffile <- "Homo_sapiens.GRCh38.104.gtf.gz"
 DB <- ensDbFromGtf(gtf=past0(ensemblhost, gtffile))
 EDB <- EnsDb(DB)
-txdf <- transcripts(EDB, #EnsDb.Hsapiens.v86
+txdf <- transcripts(EDB,
                     return.type="DataFrame",
                     columns=c('gene_id', 'gene_name'))
 tx2gene <- as.data.frame(txdf[,c("tx_id","gene_id", "gene_name")])
