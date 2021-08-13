@@ -15,7 +15,7 @@
 #SBATCH --time=2-00:00:00
 #
 # Nodes:
-#SBATCH --nodes=2
+#SBATCH --nodes=1
 # Specify number of tasks for use case (example):
 #SBATCH --ntasks-per-node=10
 ## Command(s) to run:

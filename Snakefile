@@ -148,7 +148,7 @@ rule fast_qc_1:
 	#wildcard_constraints:
 		#sample_full = '^[^filtered]*$'
 	log:
-		'{OUT_DIR}/logs{sample_full}_fastqc.log',
+		'{OUT_DIR}/logs/{sample_full}_fastqc.log',
 	shell:
 		"""
 		fastqc -o {OUT_DIR}/fastQC_output {input} &> {log}
@@ -169,7 +169,7 @@ rule trim:
 		detail = '{OUT_DIR}/logs/{sample}_detail_trimmomatic.log'
 	shell:
 		"""
-		java -jar {TRIM}/trimmomatic-0.36.jar PE -trimlog {log.detail} {input.r1} {input.r2} -baseout {OUT_DIR}/trimmedFQ/{wildcards.sample}_filtered.fastq.gz ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36 &> {log.summary}
+		java -jar {TRIM}/trimmomatic-0.36.jar PE -trimlog {log.detail} {input.r1} {input.r2} -baseout {OUT_DIR}/trimmedFQ/{wildcards.sample}_filtered.fastq.gz ILLUMINACLIP:{TRIM}/adapters/TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36 &> {log.summary}
 		"""
 
 # run trimmed read 1's through fastQC
