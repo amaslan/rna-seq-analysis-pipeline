@@ -319,7 +319,7 @@ rule collect_isize_gc_alignment_metrics:
 rule multi_qc_metrics:
     input:
         fastqc_files = expand(join(OUT_DIR, 'fastQC_output', '{sample_full}_fastqc.html'), sample_full = SAMPLES_FULL),
-        picard_files = expand(join(OUT_DIR, 'picard', '{sample}_multiple_metrics.insert_size_metrics'), sample= SAMPLES)
+        picard_files = expand(join(OUT_DIR, 'picard', '{sample}/multiple_metrics.insert_size_metrics'), sample= SAMPLES)
     output:
         '{OUT_DIR}/quality_control_metrics/multiqc/multiqc_report.html'
     shell:
