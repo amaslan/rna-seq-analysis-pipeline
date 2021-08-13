@@ -94,8 +94,6 @@ def R1_R2_sample_names(list_r1_r2):
 SAMPLES_FULL = R1_R2_sample_names(SAMPLES_FULL_PATH)
 
 # make sampleKey.csv needed for differential expression analysis
-print(SAMPLES)
-print(CONDS)
 sampleKey = pd.DataFrame(
 	{
 		'sample': SAMPLES,

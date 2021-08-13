@@ -1,6 +1,6 @@
 #!/bin/bash
 # Job name:
-#SBATCH --job-name=amm_rna_dam
+#SBATCH --job-name=amm_rna
 #
 # Account:
 #SBATCH --account=co_rosalind
@@ -12,10 +12,10 @@
 #SBATCH --qos=rosalind_savio_normal
 #
 # Wall clock limit:
-#SBATCH --time=3-00:00:00
+#SBATCH --time=2-00:00:00
 #
 # Nodes:
-#SBATCH --nodes=1
+#SBATCH --nodes=2
 ## Command(s) to run:
 module load fastqc/0.11.9
 module load samtools/1.8
