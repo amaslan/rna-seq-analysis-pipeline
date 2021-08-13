@@ -14,9 +14,6 @@ OUT_DIR: '/clusterfs/rosalind/groups/streetslab/amaslan/ivana/results'
 # path to trimmomatic installation
 TRIM: '/clusterfs/vector/home/groups/software/sl-7.x86_64/modules/trimmomatic/0.36'
 
-# path to picard installation
-#PICARD: '/clusterfs/vector/home/groups/software/sl-7.x86_64/modules/picard/2.9.0/lib'
-
 # conditions for each sample in sample order [amm1, amm10, etc.] (for differential expression analysis)
 # confirm that this is the 1-18 sample order!!
 CONDS: ['ZWT_P_DO',
