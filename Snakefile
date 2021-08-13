@@ -66,7 +66,7 @@ def sample_dictionary(fastq):
 			if bool(re.search('_R._001.fastq.gz', sample_files)): # add because directory contains I1 and I1 files in addition to R1, R2
 				sample_complete = sample_files.split('_001.fastq.gz')
 				sample_info = sample_files.split('_')
-				sample_name = sample_info[0]
+				sample_name = sample_info[0] + sample_info[1]
 				if sample_name in dictionary: 
 					full_path = root + '/' + sample_files
 					dictionary[sample_name][sample_info[2]] = [full_path]
