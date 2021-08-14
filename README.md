@@ -34,7 +34,7 @@ $ conda config --add channels bioconda
     $ conda install salmon
     ```
 
-- R bioconductor packages for differential expression script. Installation via bioconductor depends on R version. Do this outside of conda env.
+- R bioconductor packages for differential expression script. Installation via bioconductor depends on R version
 ```
 # older
 > source("https://bioconductor.org/biocLite.R")
@@ -48,11 +48,13 @@ $ conda config --add channels bioconda
 >     install.packages("BiocManager")
 
 > BiocManager::install("tximport")
-> BiocManager::install("ensembldb")
+> BiocManager::install("ensembldb") #had to do outside conda env
 > BiocManager::install("edgeR")
 ```
 
 ### 3. Update config.yaml with file paths and conditions
+Also get and update gtf file for DE analysis! I stored here: (see de.R script)
+"/clusterfs/rosalind/groups/streetslab/amaslan/ivana/annotations/Homo_sapiens.GRCh38.104.gtf.gz"
 
 ### 4. Run with the number of available CPU cores in the machine:
 ```
