@@ -33,7 +33,7 @@ names(files) <- samples
 # wget http://ftp.ensembl.org/pub/release-104/gtf/homo_sapiens/Homo_sapiens.GRCh38.104.gtf.gz 
 # --> from: http://ftp.ensembl.org/pub/release-104/gtf/homo_sapiens/ --> for de script
 gtffile <- "Homo_sapiens.GRCh38.104.gtf.gz"
-DB <- ensDbFromGtf(gtf=past0(ensemblhost, gtffile))
+DB <- ensDbFromGtf(gtf=paste0(ensemblhost, gtffile))
 EDB <- EnsDb(DB)
 txdf <- transcripts(EDB,
                     return.type="DataFrame",
