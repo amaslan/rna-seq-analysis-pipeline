@@ -48,22 +48,21 @@ $ conda config --add channels bioconda
 ### 4. Run with the number of available CPU cores in the machine:
 ```
 module load ... # whatever modules you need to load to run the pipeline
-screen -S <job_name> snakemake -j
+screen -S <job_name> snakemake -j # or submit a batch job with shell script like .sh file examples in repo
 ```
 ## Key output
 
 ### Sequencing quality control metics & plots
+- multiqc.html file: Lets you see all the fastqc and salmon results for all samples in one place so you don't have to go through files individually.
 - fastqc.html files: These are important for determining whether pre-processing of the reads is needed before differential expression analysis. Key statistics analyzed are per base sequence quality, per tile sequence quality, per sequence quality scores, per base sequence content, per sequence GC content, per base N content, sequence length distribution, sequence duplication levels, overrepresented sequences, and adapter content.
 
-### BAM file and transcript counts
-- mapped.sorted.cleaned.bam: final, cleaned, aligned, sorted sequence file
+### transcript counts
 - quant.tsv.gz: transcript quantification from Salmon structured as sample, transcript name, length, effective length, transcripts per million (TPM), and number of reads.
 
 ### Differential expression
 - counts_by_gene.csv - gene-level counts from aggregating Salmon transcript counts.
 - dispersion.png - output from limma's voom function showing noise model.
 - de_summary.csv - summary of number genes that are more lowly expressed, similarly expressed, or more highly expressed for all pairwise comparisons.
-- diff_all.csv - gene id's for differentially expressed genes at the intersection of all pairwise comparisons. Use this gene list to perform GO gene set enrichment analysis for example.
 - volcano plots - probability that a gene is differentially expressed vs. the log fold change in expression.
 - histograms of p-values - distribution of p-values for differential expression analysis (ensure not uniform at peak for p < 0.05).
 
