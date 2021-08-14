@@ -72,6 +72,7 @@ screen -S <job_name> snakemake -j # or submit a batch job with shell script like
 
 ### Differential expression
 - counts_by_gene.csv - gene-level counts from aggregating Salmon transcript counts.
+- diff_pariwise_*.csv - list of differentially expressed genes, logFC, etc. for all pairwise comparisons
 - dispersion.png - output from limma's voom function showing noise model.
 - de_summary.csv - summary of number genes that are more lowly expressed, similarly expressed, or more highly expressed for all pairwise comparisons.
 - volcano plots - probability that a gene is differentially expressed vs. the log fold change in expression.
