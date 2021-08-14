@@ -22,4 +22,5 @@
 module load fastqc/0.11.9
 module load samtools/1.8
 module load multiqc/1.9
+module load r/4.0.3
 snakemake -j --rerun-incomplete

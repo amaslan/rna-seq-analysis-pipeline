@@ -34,13 +34,22 @@ $ conda config --add channels bioconda
     $ conda install salmon
     ```
 
-- R bioconductor packages for differential expression script
+- R bioconductor packages for differential expression script. Installation via bioconductor depends on R version. Do this outside of conda env.
 ```
+# older
 > source("https://bioconductor.org/biocLite.R")
 > biocLite("tximport")
 > biocLite("ensembldb")
 > biocLite("edgeR")
 > biocLite("limma")
+
+# newer R 3.5 and up
+> if (!requireNamespace("BiocManager", quietly = TRUE))
+>     install.packages("BiocManager")
+
+> BiocManager::install("tximport")
+> BiocManager::install("ensembldb")
+> BiocManager::install("edgeR")
 ```
 
 ### 3. Update config.yaml with file paths and conditions
