@@ -243,6 +243,8 @@ rule collate_salmon:
 rule multi_qc_metrics:
     input:
         fastqc_files = expand(join(OUT_DIR, 'fastQC_output', '{sample_full}_fastqc.html'), sample_full = SAMPLES_FULL),
+        fastqc_files_2_1P = expand(join(OUT_DIR, 'fastQC_output_2', '{sample}_filtered_1P_fastqc.html'), sample = SAMPLES),
+        fastqc_files_2_2P = expand(join(OUT_DIR, 'fastQC_output_2', '{sample}_filtered_2P_fastqc.html'), sample = SAMPLES),
         salmon_files = expand(join(OUT_DIR, '{sample}', 'quant.sf'), sample = SAMPLES) 
     output:
         '{OUT_DIR}/quality_control_metrics/multiqc/multiqc_report.html'
