@@ -261,8 +261,7 @@ rule diff_expression:
 	output:
 		join(OUT_DIR, 'counts_by_gene.csv'),
 		join(OUT_DIR, 'dispersion.png'),
-		join(OUT_DIR, 'de_summary.csv'),
-		join(OUT_DIR, 'diff_all.csv')
+		join(OUT_DIR, 'de_summary.csv')
 	shell:
 		"""
 		Rscript --vanilla scripts/de.R {OUT_DIR} sampleKey.csv
