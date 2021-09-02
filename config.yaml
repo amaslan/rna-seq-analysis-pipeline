@@ -6,31 +6,20 @@
 CDNA: '/clusterfs/rosalind/groups/streetslab/amaslan/ivana/annotations/Homo_sapiens.GRCh38.cdna.all.fa'
 
 #path to fastq.gz files
-DATA_DIR: '/clusterfs/rosalind/groups/streetslab/amaslan/ivana/data/gi_IV-3549'
+# DATA_DIR: '/clusterfs/rosalind/groups/streetslab/amaslan/ivana/data/gi_IV-3549'
+DATA_DIR: '/clusterfs/rosalind/groups/streetslab/amaslan/ivana/data_ref'
 
 # path to desired results folder
-OUT_DIR: '/clusterfs/rosalind/groups/streetslab/amaslan/ivana/results'
+OUT_DIR: '/clusterfs/rosalind/groups/streetslab/amaslan/ivana/results_ref'
 
 # path to trimmomatic installation
 TRIM: '/clusterfs/vector/home/groups/software/sl-7.x86_64/modules/trimmomatic/0.36'
 
 # conditions for each sample in sample order [amm1, amm10, etc.] (for differential expression analysis)
 # confirm that this is the 1-18 sample order!!
-CONDS: ['ZWT_P_DO',
-'ZWT_P_DO',
-'ZWT_P_DO',
-'ZWT_B_DO',
-'ZWT_B_DO',
-'ZWT_B_DO',
-'ZKD_P_D5',
-'ZKD_P_D5',
-'ZKD_P_D5',
-'ZKD_B_D5',
-'ZKD_B_D5',
-'ZKD_B_D5',
-'ZKD_P_D14',
-'ZKD_P_D14',
-'ZKD_P_D14',
-'ZKD_B_D14',
-'ZKD_B_D14',
-'ZKD_B_D14']
+CONDS: ['H9',
+'H9',
+'H9',
+'H9_reset',
+'H9_reset',
+'H9_reset']

@@ -60,18 +60,24 @@ def sample_dictionary(fastq):
 		global dictionary
 		global list_of_R1_and_R2
 		for sample_files in files:
-			if bool(re.search('_R._001.fastq.gz', sample_files)): # added because directory contains I1 and I1 files in addition to R1, R2
-				sample_complete = sample_files.split('_001.fastq.gz')
+			# change based on whether reference or other data depending on naming format
+			# if bool(re.search('_R._001.fastq.gz', sample_files)): # added because directory contains I1 and I1 files in addition to R1, R2
+			if bool(re.search('.fastq.gz', sample_files)):
+				# sample_complete = sample_files.split('_001.fastq.gz')
+				sample_complete = sample_files.split('.fastq.gz')
 				sample_info = sample_files.split('_')
-				sample_name = sample_info[0] + '_' + sample_info[1]
+				#sample_name = sample_info[0] + '_' + sample_info[1]
+				sample_name = sample_info[0]
 				if sample_name in dictionary: 
 					full_path = root + '/' + sample_files
-					dictionary[sample_name][sample_info[4]] = [full_path]
+					#dictionary[sample_name][sample_info[4]] = [full_path]
+					dictionary[sample_name][sample_info[1]] = [full_path]
 					list_of_R1_and_R2.append(full_path)
 				else: 
 					dictionary[sample_name] = {}
 					full_path = root + '/' + sample_files
-					dictionary[sample_name][sample_info[4]] = [full_path]
+					dictionary[sample_name][sample_info[1]] = [full_path]
+					# dictionary[sample_name][sample_info[4]] = [full_path]
 					list_of_R1_and_R2.append(full_path) 
 		return dictionary, list_of_R1_and_R2
 
@@ -142,8 +148,10 @@ rule fast_qc_1:
 # trim fastq's to remove illumina adaptors
 rule trim:
 	input:
-		r1 = lambda wildcards: FILES[wildcards.sample]['R1'],
-		r2 = lambda wildcards: FILES[wildcards.sample]['R2']
+		#r1 = lambda wildcards: FILES[wildcards.sample]['R1'],
+		#r2 = lambda wildcards: FILES[wildcards.sample]['R2']
+		r1 = lambda wildcards: FILES[wildcards.sample]['1'],
+		r2 = lambda wildcards: FILES[wildcards.sample]['2']
 	output:
 		'{OUT_DIR}/trimmedFQ/{sample}_filtered_1P.fastq.gz',
 		'{OUT_DIR}/trimmedFQ/{sample}_filtered_1U.fastq.gz',
