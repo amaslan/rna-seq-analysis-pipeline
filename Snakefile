@@ -71,12 +71,12 @@ def sample_dictionary(fastq):
 				if sample_name in dictionary: 
 					full_path = root + '/' + sample_files
 					#dictionary[sample_name][sample_info[4]] = [full_path]
-					dictionary[sample_name][sample_info[1]] = [full_path]
+					dictionary[sample_name][sample_info[1][0]] = [full_path]
 					list_of_R1_and_R2.append(full_path)
 				else: 
 					dictionary[sample_name] = {}
 					full_path = root + '/' + sample_files
-					dictionary[sample_name][sample_info[1]] = [full_path]
+					dictionary[sample_name][sample_info[1][0]] = [full_path]
 					# dictionary[sample_name][sample_info[4]] = [full_path]
 					list_of_R1_and_R2.append(full_path) 
 		return dictionary, list_of_R1_and_R2
