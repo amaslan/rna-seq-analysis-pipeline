@@ -1,0 +1,16 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20221013)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.6799722 Released 2022-07-01
+Analyzed List:	upload_1 (Homo sapiens)
+Reference List:	Homo sapiens (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO biological process complete	Homo sapiens - REFLIST (20589)	upload_1 (11)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+stem cell fate specification (GO:0048866)	6	2	.00	+	 > 100	7.25E-06	2.84E-02
+embryonic foregut morphogenesis (GO:0048617)	9	3	.00	+	 > 100	2.49E-08	3.90E-04
+foregut morphogenesis (GO:0007440)	10	3	.01	+	 > 100	3.23E-08	2.53E-04
+digestive tract morphogenesis (GO:0048546)	48	3	.03	+	 > 100	2.33E-06	1.22E-02

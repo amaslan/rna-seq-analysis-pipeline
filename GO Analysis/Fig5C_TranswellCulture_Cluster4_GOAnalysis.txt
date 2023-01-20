@@ -1,0 +1,44 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20221013)
+Annotation Version and Release Date:	GO Ontology database DOI:  10.5281/zenodo.6799722 Released 2022-07-01
+Analyzed List:	upload_1 (Homo sapiens)
+Reference List:	Homo sapiens (all genes in database)
+Test Type:	FISHER
+Correction:	FDR
+GO biological process complete	Homo sapiens - REFLIST (20589)	upload_1 (21)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+cellular response to erythropoietin (GO:0036018)	6	2	.01	+	 > 100	2.76E-05	1.80E-02
+detoxification of copper ion (GO:0010273)	16	5	.02	+	 > 100	1.32E-11	2.07E-07
+stress response to copper ion (GO:1990169)	16	5	.02	+	 > 100	1.32E-11	1.04E-07
+response to erythropoietin (GO:0036017)	7	2	.01	+	 > 100	3.54E-05	2.14E-02
+detoxification of inorganic compound (GO:0061687)	19	5	.02	+	 > 100	2.76E-11	1.44E-07
+stress response to metal ion (GO:0097501)	20	5	.02	+	 > 100	3.45E-11	1.35E-07
+cellular response to zinc ion (GO:0071294)	25	5	.03	+	 > 100	9.21E-11	2.89E-07
+primitive streak formation (GO:0090009)	10	2	.01	+	 > 100	6.49E-05	3.39E-02
+cellular response to copper ion (GO:0071280)	28	5	.03	+	 > 100	1.53E-10	4.00E-07
+cellular zinc ion homeostasis (GO:0006882)	37	5	.04	+	 > 100	5.46E-10	1.22E-06
+cellular response to cadmium ion (GO:0071276)	38	5	.04	+	 > 100	6.17E-10	1.21E-06
+zinc ion homeostasis (GO:0055069)	40	5	.04	+	 > 100	7.82E-10	1.36E-06
+response to copper ion (GO:0046688)	42	5	.04	+	 > 100	9.81E-10	1.54E-06
+response to zinc ion (GO:0010043)	53	5	.05	+	92.49	2.91E-09	4.15E-06
+response to cadmium ion (GO:0046686)	61	5	.06	+	80.36	5.64E-09	6.81E-06
+cellular transition metal ion homeostasis (GO:0046916)	112	5	.11	+	43.77	1.02E-07	1.15E-04
+detoxification (GO:0098754)	136	6	.14	+	43.25	4.79E-09	6.26E-06
+transition metal ion homeostasis (GO:0055076)	140	5	.14	+	35.02	2.99E-07	2.76E-04
+response to toxic substance (GO:0009636)	232	6	.24	+	25.36	1.05E-07	1.09E-04
+cellular response to metal ion (GO:0071248)	200	5	.20	+	24.51	1.66E-06	1.44E-03
+cellular response to inorganic substance (GO:0071241)	230	5	.23	+	21.31	3.24E-06	2.67E-03
+cellular divalent inorganic cation homeostasis (GO:0072503)	233	5	.24	+	21.04	3.45E-06	2.70E-03
+negative regulation of growth (GO:0045926)	247	5	.25	+	19.85	4.55E-06	3.40E-03
+divalent inorganic cation homeostasis (GO:0072507)	270	5	.28	+	18.16	6.97E-06	4.97E-03
+anterior/posterior pattern specification (GO:0009952)	218	4	.22	+	17.99	6.79E-05	3.43E-02
+cellular metal ion homeostasis (GO:0006875)	330	5	.34	+	14.85	1.81E-05	1.23E-02
+response to metal ion (GO:0010038)	363	5	.37	+	13.50	2.84E-05	1.78E-02
+regulation of growth (GO:0040008)	627	8	.64	+	12.51	1.11E-07	1.09E-04
+cellular cation homeostasis (GO:0030003)	411	5	.42	+	11.93	5.10E-05	2.96E-02
+metal ion homeostasis (GO:0055065)	420	5	.43	+	11.67	5.64E-05	3.16E-02
+cellular ion homeostasis (GO:0006873)	428	5	.44	+	11.45	6.16E-05	3.33E-02
+negative regulation of biological process (GO:0048519)	5314	14	5.42	+	2.58	1.00E-04	4.92E-02
