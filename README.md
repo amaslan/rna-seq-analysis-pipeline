@@ -1,5 +1,4 @@
-# rna-seq-pipeline
-## Website: https://amaslan.github.io/rna-seq-pipeline-ivana/
+# rna-seq-analysis-pipeline
 
 ## Pipeline summary
 1. FASTQC - high-level sequencing quality control
